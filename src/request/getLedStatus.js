@@ -5,7 +5,8 @@ module.exports = function (req, res)
     process.env.DEBUG?console.log("Get led status request"):"";
     try
     {
-        jres = {success:"1", value: LedManager.getInstance().getStatus() }
+        jres =  LedManager.getInstance().getStatus()
+        process.env.DEBUG?console.log(jres):"";
         res.send(jres);
     }
     catch(e)
