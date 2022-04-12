@@ -29,9 +29,9 @@ class PrivateSingleton {
 
         if(this.rainbowRunning) return ({success:0, error: "Rainbow is running"});
 
-        this.redValue= r != undefined ? r : this.redValue;
-        this.greenValue= g != undefined ? g : this.greenValue;
-        this.blueValue= b != undefined ? b : this.blueValue;
+        this.redValue= r != undefined ? parseInt(r,10) : this.redValue;
+        this.greenValue= g != undefined ? parseInt(g,10) : this.greenValue;
+        this.blueValue= b != undefined ? parseInt(b,10) : this.blueValue;
 
         this.RedLed.pwmWrite(parseInt(this.redValue,10));
         this.GreenLed.pwmWrite(parseInt(this.greenValue,10));
@@ -63,7 +63,7 @@ class PrivateSingleton {
     {
         if(brightnesVal<0) return ({success:0, error:"Brightness value < 0"});
         if(brightnesVal>255) return ({success:0, error:"Brightness value > 255"});
-        this.rainbowBrightness=brightnesVal;
+        this.rainbowBrightness=parseInt(brightnesVal,10);
         return ({success:1, value:{brightnesVallue:this.rainbowBrightness}})
     }
 
@@ -73,7 +73,7 @@ class PrivateSingleton {
         if(time==undefined) return  ({success:0, error:"Time delay is undefined"});
         if(time<10) return ({success:0, error:"Time frequence is too high"});  
 
-        this.time=time;
+        this.time=parseInt(time,10);
         this.rainbowRunning=true;
 
         this.startRainbow();
